@@ -15,8 +15,7 @@ class Questions extends Component {
     };
 
     render() {
-        const { questionIds, answers } = this.props;
-        const answeredQIds = Object.keys(answers);
+        const { questionIds, answeredQIds } = this.props;
         const unansweredQIds = questionIds.filter((qid) => answeredQIds.indexOf(qid) === -1);
         const { tab } = this.state;
 
@@ -79,9 +78,12 @@ class Questions extends Component {
 }
 
 function mapStateToProps({ questions, authedUser, users }) {
+    const sortedQuestionIds = Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+    const answeredQIds = authedUser !== null ? Object.keys(users[authedUser].answers) : [];
+    const sortedAnsweredQIds = sortedQuestionIds.filter((id) => answeredQIds.indexOf(id) !== -1);
     return ({
-        questionIds: Object.keys(questions),
-        answers: authedUser !== null ? users[authedUser].answers : null,
+        questionIds: sortedQuestionIds,
+        answeredQIds: sortedAnsweredQIds,
         authedUser
     })
 }

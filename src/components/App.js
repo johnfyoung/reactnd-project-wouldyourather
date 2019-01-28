@@ -23,11 +23,12 @@ class App extends Component {
 
     return (
       <Fragment>
-        <LoadingBar />
+
         <Router>
           <div className="app">
             <header className="app__header bg-dark">
               <Nav />
+              <LoadingBar />
             </header>
             <div className='app__body pt-5'>
               <PrivateRoute path='/' exact component={Questions} isAuthed={isAuthed} />

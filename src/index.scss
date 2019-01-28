@@ -148,12 +148,10 @@ button.nav-item:not(.active) {
   }
 }
 
-
-
-
-
-
-
-
-
-
+.newquestion {
+  .question-text {
+    color:$color_primary;
+    font-size: 2.2rem;
+    font-weight: bold;
+  }
+}
