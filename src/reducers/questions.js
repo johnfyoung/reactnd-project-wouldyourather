@@ -12,8 +12,18 @@ export default function questions(state = {}, action) {
                 ...action.questions
             });
         case ANSWER_QUESTION:
+            const vote = [].push(action.authedUser);
             return ({
-                ...state
+                ...state,
+                [action.qid]: {
+                    ...state[action.qid],
+                    [action.answer]: {
+                        ...state[action.qid][action.answer],
+                        votes: state[action.qid][action.answer].votes.indexOf(action.authedUser) === -1
+                            ? state[action.qid][action.answer].votes.concat(vote)
+                            : state[action.qid][action.answer].votes
+                    }
+                }
             });
         case ADD_QUESTION:
             //const { question } = action;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Question from './Question';
+import { Link } from 'react-router-dom';
 
 class Questions extends Component {
     state = {
@@ -14,7 +15,7 @@ class Questions extends Component {
     };
 
     render() {
-        const { questionIds, authedUser, answers } = this.props;
+        const { questionIds, answers } = this.props;
         const answeredQIds = Object.keys(answers);
         const unansweredQIds = questionIds.filter((qid) => answeredQIds.indexOf(qid) === -1);
         const { tab } = this.state;
@@ -28,25 +29,45 @@ class Questions extends Component {
                     </div>
                 </nav>
                 <div className='questions tab-content' id='nav-tabContent'>
-                    <div className={`tab-pane fade ${tab === 'unanswered' ? 'show active' : ''}`} id='nav-unanswered' role='tabpanel' aria-labelledby='nav-unanswered-tab'>
+                    <div className={`tab-pane pt-3 fade ${tab === 'unanswered' ? 'show active' : ''}`} id='nav-unanswered' role='tabpanel' aria-labelledby='nav-unanswered-tab'>
                         <div className='container'>
                             <div className='row justify-content-center'>
-                                <ul className='col-md-8'>
-                                    {unansweredQIds.map((qid) => (
-                                        <li key={qid}><Question id={qid} isSolo={false} /></li>
-                                    ))}
-                                </ul>
+                                {unansweredQIds.length > 0
+                                    ? (
+                                        <ul className='col-md-8'>
+                                            {unansweredQIds.map((qid) => (
+                                                <li key={qid}><Question id={qid} isSolo={false} /></li>
+                                            ))}
+                                        </ul>
+                                    )
+                                    : (
+                                        <div className='col-md-8 no-questions-notice'>
+                                            <h3 >You've answered all the questions!</h3>
+                                            <p>Go ahead and <Link to={'/new'}>create</Link> some new ones of your own!</p>
+                                        </div>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
-                    <div className={`tab-pane fade ${tab === 'answered' ? 'show active' : ''}`} id='nav-answered' role='tabpanel' aria-labelledby='nav-answered-tab'>
+                    <div className={`tab-pane pt-3 fade ${tab === 'answered' ? 'show active' : ''}`} id='nav-answered' role='tabpanel' aria-labelledby='nav-answered-tab'>
                         <div className='container'>
                             <div className='row justify-content-center'>
-                                <ul className='col-md-8'>
-                                    {answeredQIds.map((qid) => (
-                                        <li key={qid}><Question id={qid} isSolo={false} /></li>
-                                    ))}
-                                </ul>
+                                {answeredQIds.length > 0
+                                    ? (
+                                        <ul className='col-md-8'>
+                                            {answeredQIds.map((qid) => (
+                                                <li key={qid}><Question id={qid} isSolo={false} /></li>
+                                            ))}
+                                        </ul>
+                                    )
+                                    : (
+                                        <div className='col-md-8 no-questions-notice'>
+                                            <h3 >You haven't answered any questions!</h3>
+                                            <p>Go ahead and answer some questions. You will feel better about yourself.</p>
+                                        </div>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>

@@ -26,7 +26,6 @@ class LoginForm extends Component {
     render() {
         const { users } = this.props;
         const { user } = this.state;
-        console.log('selected user: ', user);
         return (
             <div className="container">
                 <div className="row justify-content-center">
