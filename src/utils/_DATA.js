@@ -14,7 +14,7 @@ let users = {
     tylermcginnis: {
         id: 'tylermcginnis',
         name: 'Tyler McGinnis',
-        avatarURL: "https://tylermcginnis.com/would-you-rather/tylerjpg",
+        avatarURL: "https://tylermcginnis.com/would-you-rather/tyler.jpg",
         answers: {
             "vthrdm985a262al8qx3do": 'optionOne',
             "xj352vofupe1dqz9emx13r": 'optionTwo',

@@ -1,25 +1,52 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Questions from './Questions';
+import { connect } from 'react-redux';
+import { handleInitialData } from '../actions/shared';
+import PrivateRoute from './PrivateRoute';
+import LoadingBar from 'react-redux-loading';
+import Nav from './Nav';
+import NewQuestion from './NewQuestion';
+import LeaderBoard from './LeaderBoard';
+import Login from './Login';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(handleInitialData());
+  }
+
   render() {
+    const { authedUser, isAuthed } = this.props;
+
+    console.log('App props', this.props);
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Fragment>
+        <LoadingBar />
+        <Router>
+          <div className="app">
+            <header className="app__header bg-dark">
+              <Nav />
+            </header>
+            <div className='app__body pt-5'>
+              <PrivateRoute path='/' exact component={Questions} isAuthed={isAuthed} />
+              <PrivateRoute path='/new' exact component={NewQuestion} isAuthed={isAuthed} />
+              <PrivateRoute path='/leaderboard' exact component={LeaderBoard} isAuthed={isAuthed} />
+              <Route path='/login' exact component={Login} />
+            </div>
+          </div>
+        </Router>
+      </Fragment>
     );
   }
 }
 
-export default App;
+function mapStateToProps({ authedUser }) {
+  return {
+    loading: authedUser === null,
+    isAuthed: authedUser !== null,
+    authedUser
+  };
+}
+
+export default connect(mapStateToProps)(App);
