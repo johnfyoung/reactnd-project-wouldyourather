@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 
 class Question extends Component {
     render() {
-        const { question, author, id, isSolo, isAnswered, authedUser } = this.props;
+        const { question, author, id, isSolo, answer, authedUser } = this.props;
+        const totalAnswers = question.optionOne.votes.length + question.optionTwo.votes.length;
 
         return (
             <div className='question'>
 
-                {isAnswered && isSolo
+                {answer !== null && isSolo
                     ? (
                         <Fragment>
                             <div className='question__head'>
@@ -19,10 +20,32 @@ class Question extends Component {
                             <div className='question__body-answered'>
                                 <div className='question__body__label question__body__label-title'>Results</div>
                                 <div className='question__body-answered__option'>
-                                    {`Would you rather ${question.optionOne.text}?`}
+                                    <div className='question__body-answered__option__info'>
+                                        <div>{`Would you rather ${question.optionOne.text}?`}</div>
+                                        <div className='question__body-answered__chart my-3' style={{ width: `${(question.optionOne.votes.length / totalAnswers) * 100}%` }}>
+                                            {`${question.optionOne.votes.length / totalAnswers * 100}%`}
+                                        </div>
+                                        <div>{`${question.optionOne.votes.length} of ${totalAnswers}`}</div>
+                                    </div>
+                                    {answer !== null && answer === 'optionOne' && (
+                                        <div className='question__body-answered__option_voted'>
+                                            Your Choice!
+                                        </div>
+                                    )}
                                 </div>
                                 <div className='question__body-answered__option'>
-                                    {`Would you rather ${question.optionTwo.text}?`}
+                                    <div className='question__body-answered__option__info'>
+                                        <div>{`Would you rather ${question.optionTwo.text}?`}</div>
+                                        <div className='question__body-answered__chart my-3' style={{ width: `${(question.optionTwo.votes.length / totalAnswers) * 100}%` }}>
+                                            {`${question.optionTwo.votes.length / totalAnswers * 100}%`}
+                                        </div>
+                                        <div>{`${question.optionTwo.votes.length} of ${totalAnswers}`}</div>
+                                    </div>
+                                    {answer !== null && answer === 'optionTwo' && (
+                                        <div className='question__body-answered__option_voted'>
+                                            Your Choice!
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </Fragment>
@@ -60,13 +83,13 @@ function mapStateToProps({ questions, users, authedUser }, props) {
     const question = questions[id];
     const author = users[question.author];
     const authedUserProfile = users[authedUser];
-    const isAnswered = Object.keys(authedUserProfile.answers).indexOf(id) !== -1;
+    const answer = Object.keys(authedUserProfile.answers).indexOf(id) !== -1 ? authedUserProfile.answers[id] : null;
 
     return ({
         question,
         author,
         authedUser,
-        isAnswered
+        answer
     });
 }
 

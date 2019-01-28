@@ -114,4 +114,23 @@ button.nav-item:not(.active) {
 .question__body-answered__option {
   border: 1px solid #96CFFF;
   padding: 10px;
+  margin-bottom:20px;
+  display:flex;
+}
+
+.question__body-answered__option__info {
+  width:80%;
+}
+
+.question__body-answered__option_voted {
+  width:20%;
+  text-align:center;
+}
+
+.question__body-answered__chart {
+  background-color:#007bff;
+  height:30px;
+  color:#fff;
+  text-align: center;
+  font-weight: bold;
 }
