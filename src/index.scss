@@ -1,19 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 $color_primary_light:#96CFFF;
 $color_primary: #007bff;
 
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: -apple-system, BlinkMacSystemFont, "Lato", "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1,
+h2,
+h3 {
+  font-family: 'Alfa Slab One', Arial, Helvetica, sans-serif;
+}
+
+
 h3 {
   font-size: 1.0rem;
 }
+
+.navbar-collapse {
+  .nav-identity {
+    float:right;
+  }
+
+  &.show {
+    .nav-identity {
+      float:left;
+    }
+  }
+}
+
+
 
 .navbar-logo {
   max-height: 50px;
@@ -36,6 +60,10 @@ h3 {
 
 .nav-tabs {
   justify-content: center;
+
+  .nav-item {
+    font-family: 'Alfa Slab One', Arial, Helvetica, sans-serif;
+  }
 }
 
 button.nav-item:not(.active) {
@@ -65,14 +93,14 @@ button.nav-item:not(.active) {
       height: 40px;
     }
   }
+  
+  .question__body__label {
+    color: $color_primary;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 
   .question__body {
-    .question__body__label {
-      color: $color_primary;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
     .question__body__avatarcontainer {
       background: $color_primary_light;
       width:20%;
@@ -105,10 +133,6 @@ button.nav-item:not(.active) {
           margin-right:5px;
         }
       }
-      
-      .question__body__questioncontainer__button {
-        float:right;
-      }
     }
   }
 
@@ -131,6 +155,7 @@ button.nav-item:not(.active) {
         text-transform: uppercase;
         font-size:1.1rem;
         text-align: center;
+        font-family: 'Alfa Slab One', Arial, Helvetica, sans-serif;
 
         .question__body-answered__option_voted__check {
           font-size:4rem;
