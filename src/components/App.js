@@ -19,8 +19,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('App props', this.props);
-
     return (
       <Fragment>
         <Router>
@@ -32,7 +30,7 @@ class App extends Component {
             <div className='app__body pt-5'>
               <Switch>
                 <PrivateRoute path='/' exact component={Questions} />
-                <PrivateRoute path='/new' exact component={NewQuestion} />
+                <PrivateRoute path='/add' exact component={NewQuestion} />
                 <PrivateRoute path='/leaderboard' exact component={LeaderBoard} />
                 <PrivateRoute path='/question/:id' exact component={QuestionPage} />
                 <Route path='/login' exact component={Login} />

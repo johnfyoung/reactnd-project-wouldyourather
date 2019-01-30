@@ -21,19 +21,5 @@ class PrivateRoute extends React.Component {
         )
     }
 }
-/*
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <div>
-        <Route {...rest} isAuthed={rest.isAuthed} render={(props) => (
-            rest.isAuthed
-                ? <Component {...props} />
-                : <Redirect to={{
-                    pathname: '/login',
-                    state: { from: props.location }
-                }} />
-        )} />
-    </div>
-)
-*/
 
 export default PrivateRoute;

@@ -56,7 +56,7 @@ class Nav extends Component {
                                             <NavLink to='/leaderboard' activeClassName='active' className='nav-item nav-link'>Leaderboard</NavLink>
                                         </NavItem>
                                         <NavItem>
-                                            <NavLink to='/new' activeClassName='active' className='nav-item nav-link'>New Question</NavLink>
+                                            <NavLink to='/add' activeClassName='active' className='nav-item nav-link'>New Question</NavLink>
                                         </NavItem>
                                     </NavStrap>
                                     <div className='nav-identity'>
