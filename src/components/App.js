@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Questions from './Questions';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
@@ -10,15 +10,15 @@ import NewQuestion from './NewQuestion';
 import LeaderBoard from './LeaderBoard';
 import Login from './Login';
 import QuestionPage from './QuestionPage';
+import NotFound from './NotFound';
 
 class App extends Component {
+
   componentDidMount() {
     this.props.dispatch(handleInitialData());
   }
 
   render() {
-    const { isAuthed } = this.props;
-
     console.log('App props', this.props);
 
     return (
@@ -30,11 +30,14 @@ class App extends Component {
               <LoadingBar className='bg-dark' style={{ height: '5px' }} />
             </header>
             <div className='app__body pt-5'>
-              <PrivateRoute path='/' exact component={Questions} isAuthed={isAuthed} />
-              <PrivateRoute path='/new' exact component={NewQuestion} isAuthed={isAuthed} />
-              <PrivateRoute path='/leaderboard' exact component={LeaderBoard} isAuthed={isAuthed} />
-              <PrivateRoute path='/question/:id' exact component={QuestionPage} isAuthed={isAuthed} />
-              <Route path='/login' exact component={Login} />
+              <Switch>
+                <PrivateRoute path='/' exact component={Questions} />
+                <PrivateRoute path='/new' exact component={NewQuestion} />
+                <PrivateRoute path='/leaderboard' exact component={LeaderBoard} />
+                <PrivateRoute path='/question/:id' exact component={QuestionPage} />
+                <Route path='/login' exact component={Login} />
+                <Route component={NotFound} />
+              </Switch>
             </div>
           </div>
         </Router>

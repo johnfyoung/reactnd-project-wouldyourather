@@ -180,3 +180,46 @@ button.nav-item:not(.active) {
     font-weight: bold;
   }
 }
+
+.leaderboard {
+  .leaderboard__list {
+    padding: 0;
+    li {
+      list-style-type: none;
+
+      .leaderboard__user {
+        .leaderboard__user__picture {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: $color_primary_light;
+          width:20%;
+
+          img {
+            width:100%;
+          }
+        }
+
+        .leaderboard__user__info {
+          width:60%;
+        }
+
+        .leaderboard__user__score {
+          width:20%;
+
+          .leaderboard__user__score__label {
+            font-family: 'Alfa Slab One', Arial, Helvetica, sans-serif;
+            font-size: 1.5rem;
+            color: $color_primary_light;
+          }
+
+          .leaderboard__user__score__value {
+            font-size: 3rem;
+            color: $color_primary;
+            font-weight:bold;
+          }
+        }
+      }
+    }
+  }
+}
