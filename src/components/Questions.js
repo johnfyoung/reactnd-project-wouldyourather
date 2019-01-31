@@ -42,7 +42,7 @@ class Questions extends Component {
                                     : (
                                         <div className='col-md-8 no-questions-notice'>
                                             <h3 >You've answered all the questions!</h3>
-                                            <p>Go ahead and <Link to={'/new'}>create</Link> some new ones of your own!</p>
+                                            <p>Go ahead and <Link to={'/add'}>create</Link> some new ones of your own!</p>
                                         </div>
                                     )
                                 }
