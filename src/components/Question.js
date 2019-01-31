@@ -25,13 +25,11 @@ class Question extends Component {
     handleVote = (e) => {
         e.preventDefault();
 
-        console.log('selected option: ', this.state.selected);
-
-        const { dispatch, id } = this.props;
-        dispatch(handleAnswerQuestion({
+        const { id } = this.props;
+        this.props.sendAnsweredQuestion({
             qid: id,
             answer: this.state.selected
-        }));
+        })
     }
 
     render() {
@@ -142,6 +140,12 @@ class Question extends Component {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return ({
+        sendAnsweredQuestion: (info) => { dispatch(handleAnswerQuestion(info)) }
+    });
+}
+
 function mapStateToProps({ questions, users, authedUser }, props) {
     const { id } = props;
     const question = questions[id];
@@ -156,4 +160,4 @@ function mapStateToProps({ questions, users, authedUser }, props) {
     });
 }
 
-export default connect(mapStateToProps)(Question);
+export default connect(mapStateToProps, mapDispatchToProps)(Question);
