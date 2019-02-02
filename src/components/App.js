@@ -4,7 +4,7 @@ import Questions from './Questions';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import PrivateRoute from './PrivateRoute';
-import LoadingBar from 'react-redux-loading';
+import LoadingBar from 'react-redux-loading-bar';
 import Nav from './Nav';
 import NewQuestion from './NewQuestion';
 import LeaderBoard from './LeaderBoard';

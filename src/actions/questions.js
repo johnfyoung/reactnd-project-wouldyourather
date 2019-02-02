@@ -1,6 +1,6 @@
 import { saveQuestionAnswer, saveQuestion } from '../utils/api';
 import { userAnswerQuestion } from './users';
-import { showLoading, hideLoading } from 'react-redux-loading';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ANSWER_QUESTION = "ANSWER_QUESTION";
