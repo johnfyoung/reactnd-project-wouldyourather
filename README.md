@@ -2,8 +2,6 @@
 
 Would you rather supplies polls to its users, allowing them to create and answer questions. Users are scored based on participation and displayed in a leaderboard.
 
-This application is an execution of the Would You Rather assignment for Udacity's React Nanodegree program.
-
 ## Installation
 
 The app requires Node.js and `npm` or `yarn` to run.
